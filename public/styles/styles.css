@@ -100,6 +100,13 @@ button:hover {
 .button.cancel:hover{
     opacity: 1 ;
 }
+/*excluir quanto passar para cadaster ****** aletar ********************************************/
+a,p{
+    display: flex;
+    flex-direction: row;
+    white-space: nowrap;
+    margin-left: 5px;
+}
 
 /*================HEADER============================*/
 header{
@@ -213,7 +220,9 @@ td.description{
     color: var(--dark-blue);
 }
 /*================MODAL============================*/
-.modal-overlay{
+.modal-overlay,
+.modal-login,
+.modal-cadastro{
     width: 100%;
     height: 100%;
 
@@ -232,7 +241,9 @@ td.description{
     z-index: 999;
 }
 
-.modal-overlay.active{
+.modal-overlay.active,
+.modal-login.active,
+.modal-cadastro.active{
     opacity: 1;
     visibility: visible;
 }
@@ -289,7 +300,8 @@ input{
 
 /*================FOOTER============================*/
 footer{
-    text-align: center;
+    display: flex;
+    justify-content: center;
     padding: 4rem 0 2rem;
     color: var(--dark-blue);
 
@@ -307,4 +319,41 @@ footer{
         grid-template-columns: repeat(3,1fr);
         gap: 2rem;
     }
+}
+
+/***********TELA LOGIN E CADASTRO***********************/
+.login-cadastro{
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 35px;
+}
+
+.login {
+    display: flex;
+    padding: 15px;
+    justify-content: center;
+    border-radius: 0.1rem;
+    background-color: rgb(179, 248, 152);
+    width: 90px;
+}
+
+.login:hover {
+    background-color: rgb(143, 240, 105);
+}
+
+.cadastro{
+    display: flex;
+    padding: 15px;
+    border-radius: 0.1rem;
+    background-color: rgb(179, 248, 152);
+    width: 90px;
+}
+.cadastro:hover{
+    background-color: rgb(143, 240, 105);
+    
+}
+
+.input-group a p{
+    display: flex;
+    padding: 15px;
 }

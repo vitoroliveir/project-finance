@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../public/styles/styles.css">
+    
+    <title>Document</title>
+</head>
+<body>
+    
+    <div class="modal-cadastro active">
+        <div class="modal">
+            <div id="form">
+                <h2>Cadastro</h2>
+
+                <form action="" method="post">
+                    <h3>Nome</h3>
+                    <div class="input-group">
+                        <label  
+                            class="sr-only"
+                            for="nome">Nome</label>
+                        <input  
+                            type="text" 
+                            name="name" 
+                            id="name"
+                            placeholder="Nome"
+                        />
+                    </div>
+
+                    <h3>Email</h3>
+                    <div class="input-group">
+                        <label  
+                            class="sr-only"
+                            for="email">E-mail</label>
+                        <input  
+                            type="email" 
+                            name="emailCadastro" 
+                            id="emailCadastro"
+                            placeholder="E-mail"
+                        />
+                    </div>
+
+                    <div class="input-group">
+                        <h3>Senha</h3>
+                        <label
+                            class="sr-only"
+                            for="password">senha</label>
+                        <input 
+                            type="password" 
+                            name="passwordCadastro" 
+                            id="passwordCadastro" 
+                            placeholder="********"
+                        />
+                    </div>
+
+                    <div class="input-group">
+                        <h3>Confirme sua senha</h3>
+                        <label
+                            class="sr-only"
+                            for="password">senha</label>
+                        <input 
+                            type="password" 
+                            name="password2Cadastro" 
+                            id="password2Cadastro" 
+                            placeholder="********"
+                        />
+                    </div>
+
+                    <div class="input-group action">
+                        <button type="submit" >Salvar</button>
+                        <p>Já tem conta? </p><a  href="/" onclick="Modal.openLogin()" class="button 
+                            cancel">Login</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+<script src="../public/scripts/login-cadastro.js"></script>
+
+</body>
+</html>

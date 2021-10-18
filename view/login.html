@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../public/styles/styles.css">
+    
+    <title>Document</title>
+</head>
+<body>    
+
+    <div class="modal-login active">
+        <div class="modal" >
+            <div id="form">
+                <h2>Login</h2>
+                <form action="" method="post" >
+                    <h3>E-mail</h3>
+                    <div class="input-group">
+                        <label  
+                            class="sr-only"
+                            for="email">E-mail</label>
+                        <input  
+                            type="email" 
+                            name="emailLogin" 
+                            id="emailLogin"
+                            placeholder="E-mail"
+                        />
+                    </div>
+
+                    <div class="input-group">
+                        <h3>Senha</h3>
+                        <label
+                            class="sr-only"
+                            for="password">senha</label>
+                        <input 
+                            type="password" 
+                            name="passwordLogin" 
+                            id="passwordLogin" 
+                            placeholder="********"
+                        />
+                    </div>
+
+
+                    <div class="input-group action">
+                        <button type="submit">Entrar</button>
+                        <p>Ainda não tem conta? <a onclick="Modal.openCadastro()" href="/signup"  class="button 
+                        cancel">Cadastre-se</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+<script src="../public/scripts/login-cadastro.js"></script>
+
+</body>
+</html>

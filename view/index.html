@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="../public/styles/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,400;0,700;1,100&display=swap"
@@ -15,7 +15,7 @@
 
 <body>
     <header>
-        <img src="./assets/logo.svg" alt="logo dev fineance">
+        <img src="../public/assets/logo.svg" alt="logo dev fineance">
 
     </header>
 
@@ -31,7 +31,7 @@
                     <span>
                         <p>Entradas</p>
                     </span>
-                    <img src="./assets/income.svg" alt="imagem de entradas">
+                    <img src="../public/assets/income.svg" alt="imagem de entradas">
                 </h3>
 
                 <p id="incomeDisplay">0,00</p>
@@ -42,7 +42,7 @@
                     <span>
                         <p>Saidas</p>
                     </span>
-                    <img src="./assets/expense.svg" alt="imagem de Saidas">
+                    <img src="../public/assets/expense.svg" alt="imagem de Saidas">
                 </h3>
 
                 <p id="expenseDisplay">0,00</p>
@@ -53,7 +53,7 @@
                     <span>
                         <p>Total</p>
                     </span>
-                    <img src="./assets/total.svg" alt="imagem de total">
+                    <img src="../public/assets/total.svg" alt="imagem de total">
                 </h3>
                 
                 <p id="totalDisplay">0,00</p>
@@ -88,7 +88,7 @@
             <div id="form">
                 <h2>Nova Transação</h2>
 
-                <form action="" onsubmit="Form.submit(event)">
+                <form action="" onsubmit="Form.submit(event)" method="post">
                     <div class="input-group">
                         <label  
                             class="sr-only"
@@ -130,17 +130,16 @@
                     <div class="input-group action">
                         <a onclick="Modal.close()" href="#"  class="button 
                         cancel">Cancelar</a>
-                        <button>Salvar</button>
+                        <button type="submit">Salvar</button>
                     </div>
-
                 </form>
             </div>
         </div>
     </div>
     
-    <footer><p>dev.fineance$</p></footer>
+    <footer><p>dev.finance$</p></footer>
 
-    <script src="./script.js"></script>
+    <script src="../public/scripts/index.js"></script>
 </body>
 
 </html>

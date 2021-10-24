@@ -1,4 +1,4 @@
-const novaTransacao = document.querySelector('.modal-overlay');
+const novaTransacao = document.querySelector('.modal-overlay')
 
 //criar uma nova transacao
 const Modal = {
@@ -10,21 +10,9 @@ const Modal = {
     }
 }
 
-//guardando dados no storage do navegador
-const Storage = {
-    get(){
-        return JSON.parse(localStorage.getItem("dev.finances:Transactions")) || []
-    },
-
-    set(Transactions){
-        localStorage.setItem("dev.finances:Transactions", JSON.stringify(Transactions))
-    }
-}
 
 //calculo entradas, saidas e total
 const Transaction = {
-    all: Storage.get(),
-
     add(transaction){
         Transaction.all.push(transaction);
 
@@ -36,35 +24,6 @@ const Transaction = {
         Transaction.all.splice(index,1)
 
         App.reload()
-    },
-
-    //somar as entradas
-    incomes(){
-        let income = 0;
-
-        Transaction.all.forEach((transaction) =>{
-            if(transaction.amount > 0){
-                income += transaction.amount;
-            }
-        })
-
-        return income;
-    },
-    //somar as saidas
-    expenses(){
-        let expenses = 0;
-
-        Transaction.all.forEach((transaction) =>{
-            if(transaction.amount < 0){
-                expenses += transaction.amount;
-            }
-        })
-
-        return expenses;
-    },
-    //entradas - saidas
-    total(){
-        return this.incomes() + this.expenses();
     }
 }
 
@@ -89,7 +48,7 @@ const DOM = {
 
         const html =  `
                 <td class="description">${Transaction.description}</td>
-                <td class="${CSSclass}">${formatAmount}</td>
+                <td id="amount" class="${CSSclass}">${formatAmount}</td>
                 <td class="date">${Transaction.date}</td>
                 <td><img onclick="Transaction.remove(${index})"src="../public/assets/minus.svg" alt="remover transacao"></td>
             `
@@ -97,21 +56,21 @@ const DOM = {
     },
 
     //atualizar o balanco
-    updateBalance(){
+    updateBalance(Transaction){
         //Entradas
         document
             .querySelector('#incomeDisplay')
-            .innerHTML = Utils.formatCurrency(Transaction.incomes());
+            .innerHTML = Utils.formatCurrency(Transaction.incomes);
         
         //Saidas
         document
             .querySelector('#expenseDisplay')
-            .innerHTML = Utils.formatCurrency(Transaction.expenses());
+            .innerHTML = Utils.formatCurrency(Transaction.expenses);
 
         //Total
         document
             .querySelector('#totalDisplay')
-            .innerHTML = Utils.formatCurrency(Transaction.total());
+            .innerHTML = Utils.formatCurrency(Transaction.total);
     },
 
     //limpando transacoes
@@ -131,7 +90,7 @@ const Utils = {
     },
     
     formatDate(date){
-        const splittedDate =  date.split("-")
+        const splittedDate =  date.split("-"," ")
 
         return `${splittedDate[2]}/${splittedDate[1]}/${splittedDate[0]}` 
     },
@@ -141,7 +100,7 @@ const Utils = {
 
         value = String(value).replace(/\D/g , "");
 
-        value = Number(value) / 100;
+        value = Number(value) / 1;
 
         value = value.toLocaleString("pt-br",{
             style:"currency",
@@ -220,14 +179,39 @@ const Form = {
 
 const App = {
     init(){
-        //inserindo elemetos criados na DOM na pagina
-        Transaction.all.forEach((Transaction,index)=>{
-            DOM.addTransaction(Transaction,index);
-        })
+        
+            //inserindo elemetos criados na DOM na pagina
+            const consulta =  () =>{
+                const options = {
+                    method:'GET',
+                    mode:"cors",
+                    cache: 'default'
+                    
+                }
+                
+                fetch('http://localhost:8080/api-transactions')
+                    .then(response => { return response.json()})
+                    .then( data => {
+                        data.forEach((trasaction)=>{
+                            DOM.addTransaction(trasaction)  
+                        }) 
+                })
 
-        DOM.updateBalance()
+                fetch("http://localhost:8080/api-balance")
+                    .then(response => { return response.json()})
+                    .then( data => {
+                        data.forEach((balance)=>{ 
+                            DOM.updateBalance(balance) 
+                        }) 
+                })
 
-        Storage.set(Transaction.all)
+                
+            }
+
+            consulta()
+
+            DOM.updateBalance()
+     
     },
     reload(){
         //server para nao inserir duas vezes
@@ -238,5 +222,4 @@ const App = {
 }
 
 App.init()
-
 

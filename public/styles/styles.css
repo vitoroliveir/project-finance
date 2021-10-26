@@ -100,7 +100,14 @@ button:hover {
 .button.cancel:hover{
     opacity: 1 ;
 }
-/*excluir quanto passar para cadaster ****** aletar ********************************************/
+
+.delete{
+    background-color: transparent;
+}
+.delete:hover{
+    background-color: transparent;
+}
+/*excluir quanto passar para cadastro ****** aletar ********************************************/
 a,p{
     display: flex;
     flex-direction: row;

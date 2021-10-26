@@ -11,22 +11,6 @@ const Modal = {
 }
 
 
-//calculo entradas, saidas e total
-const Transaction = {
-    add(transaction){
-        Transaction.all.push(transaction);
-
-        App.reload()
-    },
-    
-    //removendo uma transacao
-    remove(index){
-        Transaction.all.splice(index,1)
-
-        App.reload()
-    }
-}
-
 //criando elemento DOM na pagina com as Transações
 const DOM = {
     transactionContainer: document.querySelector('#data-table tbody'),
@@ -48,9 +32,14 @@ const DOM = {
 
         const html =  `
                 <td class="description">${Transaction.description}</td>
-                <td id="amount" class="${CSSclass}">${formatAmount}</td>
+                <td class="${CSSclass}">${formatAmount}</td>
                 <td class="date">${Transaction.date}</td>
-                <td><img onclick="Transaction.remove(${index})"src="../public/assets/minus.svg" alt="remover transacao"></td>
+                <td>
+                <form action="/index/delete" method="POST">
+                    <input type="hidden" name="id" value="${Transaction.id}">
+                    <button type="submit" class="delete"><img src="../public/assets/minus.svg" alt="remover transacao"></button>
+                </form>
+                </td>
             `
         return html;
     },
@@ -110,72 +99,6 @@ const Utils = {
         return signal + value;
     }
 } 
-
-const Form = {
-    description: document.querySelector('input#description'),
-    amount: document.querySelector("input#amount"),
-    date:   document.querySelector("input#date"),
-
-    getValues(){
-        return{
-            description: Form.description.value,
-            amount: Form.amount.value,
-            date: Form.date.value
-        }
-    },
-
-    formatValues(){
-        let {description, amount, date} = Form.getValues()
-
-        amount = Utils.formatAmount(amount)
-
-        date = Utils.formatDate(date)
-
-        return{
-            description,
-            amount,
-            date
-        }
-    },
-
-    clearFields(){
-        Form.description.value = ""
-        Form.amount.value = ""
-        Form.date.value = ""
-    },
-
-    //verificando se todos os dados foram prenchidos 
-    validateFields(){
-        const {description, amount, date} = Form.getValues()
-
-        if(description.trim() === ""|| amount.trim() === "" || date.trim() == ""){
-            throw new Error("Por favor, preencha todos os campos")
-        }
-    },
-
-    submit(event){
-        event.preventDefault()
-
-        try{
-            //verificar se todos os valores estao prencidos 
-            Form.validateFields()
-
-            const transaction = Form.formatValues()
-
-            Transaction.add(transaction)
-
-            Form.clearFields()
-
-            Modal.close()
-
-        }catch(error){
-            alert(error.message)
-        }
-        
-
-        Form.formatValues()
-    }
-}
 
 const App = {
     init(){

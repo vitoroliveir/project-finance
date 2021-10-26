@@ -3,6 +3,11 @@ const db =  require("./db")
 
 
 const Transactions = db.sequelize.define("transaction",{
+    id: {
+        type: Sequelize.INTEGER,
+        autoIncrement: true,
+        primaryKey: true
+    },
     id_usuario:{
         type: Sequelize.INTEGER
     },

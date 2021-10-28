@@ -12,7 +12,6 @@ const transactions =  require("./models/transaction")
 const balance = require("./models/balance")
 
 
-
 //Configurações
     //Public
         app.use(express.static('.'))
@@ -25,6 +24,7 @@ const balance = require("./models/balance")
     //body-parses
         app.use(bodyparser.json());
         app.use(bodyparser.urlencoded({ extended: true }));
+
     //session
         app.use(session({secret:'asa8dgs89gksf97gasdf496a4s'}));
 
@@ -60,8 +60,6 @@ const balance = require("./models/balance")
                     //criando a sessao
                     req.session.login = email
                     res.redirect('/index')
-
-                    const id_usuario =  usuario.id
 
                 }else{
                     console.log('Senha incorreta.')

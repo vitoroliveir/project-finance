@@ -72,7 +72,11 @@ const balance = require("./models/balance")
     })
 
     app.get('/index',(req,res)=>{
-        res.render('index')
+        if(req.session.login){
+            res.render('index')
+        }else{
+            res.redirect('/')
+        }
     })
 
     app.post('/index',(req,res)=>{
@@ -84,7 +88,8 @@ const balance = require("./models/balance")
             let incomes = 0
             let expenses = 0 
             let total = 0 
-
+            
+            
             const usuario = await user.findOne({
                 where:{
                     email: req.session.login
@@ -109,7 +114,7 @@ const balance = require("./models/balance")
                     console.log(`Erro: ${err}`)
                 })
             
-
+                
 
                 //calculo do balanço
                 await transactions.findAll({

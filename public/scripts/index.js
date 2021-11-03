@@ -35,13 +35,21 @@ const DOM = {
                 <td class="${CSSclass}">${formatAmount}</td>
                 <td class="date">${Transaction.date}</td>
                 <td>
-                <form action="/index/delete" method="POST">
-                    <input type="hidden" name="id" value="${Transaction.id}">
-                    <button type="submit" class="delete"><img src="../public/assets/minus.svg" alt="remover transacao"></button>
+                <form>
+                    <button class="delete" onclick="DOM.delete(${Transaction.id})">
+                        <img src="../public/assets/minus.svg" alt="remover transacao">
+                    </button>
                 </form>
                 </td>
             `
         return html;
+    },
+
+    delete(id){
+        
+        fetch(`http://localhost:8080/index/${id}`,{method:'DELETE'})
+                    .then(response => { return response.json()})
+
     },
 
     //atualizar o balanco
@@ -112,7 +120,7 @@ const App = {
                     
                 }
                 
-                fetch('http://localhost:8080/api-transactions')
+                fetch('http://localhost:8080/api-transactions',options)
                     .then(response => { return response.json()})
                     .then( data => {
                         data.forEach((trasaction)=>{
@@ -120,7 +128,7 @@ const App = {
                         }) 
                 })
 
-                fetch("http://localhost:8080/api-balance")
+                fetch("http://localhost:8080/api-balance",options)
                     .then(response => { return response.json()})
                     .then( data => {
                         data.forEach((balance)=>{ 

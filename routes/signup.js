@@ -14,7 +14,7 @@ router.post('/',(req,res)=>{
         (async ()=>{
             const email = req.body.emailCadastro
             var password = req.body.passwordCadastro
-            const passwordRepeat = req.body.password2Cadastro
+            const passwordRepeat = req.body.password_confirmation
 
             const emailExist = await user.findAll({
                 where:{

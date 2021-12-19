@@ -15,7 +15,7 @@ router.get('/',(req,res)=>{
 })
 
 router.post('/',(req,res)=>{
-    //transacoes
+    //Transações
     (async ()=>{
         const description = req.body.description
         const amount = req.body.amount
@@ -35,7 +35,7 @@ router.post('/',(req,res)=>{
             console.log("Por favor, preencha todos os campos.")
             
         }else{
-            //inserindo trançacoes
+            //inserindo Transações
             await transactions.create({
                 id_usuario: usuario.id,
                 description: description,

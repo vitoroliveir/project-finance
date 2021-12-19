@@ -111,7 +111,7 @@ const Utils = {
 const App = {
     init(){
         
-            //inserindo elemetos criados na DOM na pagina
+            //inserindo elementos criados na DOM
             const consulta =  () =>{
                 const options = {
                     method:'GET',
@@ -120,7 +120,7 @@ const App = {
                     
                 }
                 
-                fetch('http://localhost:8080/api-transactions',options)
+                fetch('http://localhost:8080/api-transaction',options)
                     .then(response => { return response.json()})
                     .then( data => {
                         data.forEach((trasaction)=>{

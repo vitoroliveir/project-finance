@@ -1,6 +1,6 @@
 const express = require("express")
 const app = express()
-const port = 8080
+const port = 8000
 const bodyparser = require('body-parser')
 const session = require('express-session')
 var path =  require("path")
@@ -31,7 +31,7 @@ const apiBalance =  require('./routes/api-balance')
     app.use('/', login)
     app.use('/signup', signup)
     app.use('/index', index)
-    app.use('/api-transactions', apiTransaction)
+    app.use('/api-transaction', apiTransaction)
     app.use('/api-balance', apiBalance)
    
 

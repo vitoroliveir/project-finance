@@ -23,6 +23,6 @@ const Transactions = db.sequelize.define("transaction",{
 
 })
 
-// Transactions.sync({ force: true })
+/* Transactions.sync({ force: true }) */
 
 module.exports = Transactions

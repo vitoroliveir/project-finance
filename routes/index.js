@@ -17,9 +17,7 @@ router.get('/',(req,res)=>{
 router.post('/',(req,res)=>{
     //Transações
     (async ()=>{
-        const description = req.body.description
-        const amount = req.body.amount
-        const date = req.body.date
+        const {description, amount, date} = req.body
         let incomes = 0
         let expenses = 0 
         let total = 0 

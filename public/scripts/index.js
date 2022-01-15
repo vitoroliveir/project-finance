@@ -47,7 +47,7 @@ const DOM = {
 
     delete(id){
         
-        fetch(`http://localhost:8080/index/${id}`,{method:'DELETE'})
+        fetch(`http://localhost:8000/index/${id}`,{method:'DELETE'})
                     .then(response => { return response.json()})
 
     },
@@ -120,7 +120,7 @@ const App = {
                     
                 }
                 
-                fetch('http://localhost:8080/api-transaction',options)
+                fetch('http://localhost:8000/api-transaction',options)
                     .then(response => { return response.json()})
                     .then( data => {
                         data.forEach((trasaction)=>{
@@ -128,7 +128,7 @@ const App = {
                         }) 
                 })
 
-                fetch("http://localhost:8080/api-balance",options)
+                fetch("http://localhost:8000/api-balance",options)
                     .then(response => { return response.json()})
                     .then( data => {
                         data.forEach((balance)=>{ 

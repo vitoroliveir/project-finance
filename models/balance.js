@@ -16,6 +16,6 @@ const Balance = db.sequelize.define('balance',{
     }
 })
 
-// Balance.sync({ force: true })
+/* Balance.sync({ force: true }) */
 
 module.exports = Balance
